@@ -9,21 +9,31 @@ function FilterAllergies(props)
         var choosen = document.getElementById(event.target.id);
         if (props.allergies[event.target.id] == false)
         {
-            var temp = props.allergies;
-            console.log(props.allergies);
+            //var temp = JSON.parse(JSON.stringify(props.allergies));
+            //console.log(props.allergies);
             choosen.className =  "dropdown-content-clicked";
-            temp[event.target.value] = true;
-            props.allergiesChanged(temp);
-
-            console.log(props.allergies);
-            console.log(props.allergies);
+            //temp[event.target.id] = true;
+            //console.log(temp)
+            props.allergiesChanged(
+                {
+                    ...props.allergies,
+                    [event.target.id] : true
+                }
+            )
+            //console.log(props.allergies);
+            //console.log(props.allergies);
             
         }
         else{
-            var temp = props.allergies;
+            //var temp = props.allergies;
             choosen.className = "dropdown-content-unclicked"
-            temp[event.target.value] = false;
-            props.allergiesChanged(temp);
+            //temp[event.target.value] = false;
+            props.allergiesChanged(
+                {
+                    ...props.allergies,
+                    [event.target.id] : false
+                }
+            );
         }
 
     }

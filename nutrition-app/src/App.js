@@ -1,7 +1,11 @@
+// import ReactDOM from 'react-dom';
+// import { BrowserRouter } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+
 import './App.css';
 import FoodForm from './FoodForm'
 import Filterbar from './components/filterBar/filterBar'
+
 
 function App() {
 
@@ -27,7 +31,11 @@ function App() {
         "Wheat Free" : false
 
     }); // set all the default to false here for the allergies
-  const [diets, setDiets] = useState({}); // set all the default to false here for the diets
+  const [diets, setDiets] = useState(
+    {
+      "vegan": false,
+      "vegetarian" :false
+    }); // set all the default to false here for the diets
 
   const handleCaloriesInput = (newCal) =>{
     console.log("old cal ", calories)
@@ -51,7 +59,7 @@ function App() {
   if (typeof(userInput) == 'string') {
     var params = new URLSearchParams(userInput);
     console.log("User Input:  " + userInput)
-    fetch('http://127.0.0.1:5000/search/')
+    fetch('http://127.0.0.1:5000/search')
       .then(response => {
       console.log("Response:    " + response)
       response.json()
@@ -59,8 +67,6 @@ function App() {
       console.log("Data:"  + data)
         })
       })
-  }
-  });
 
   const [userInput, setUserInput] = useState([]);
   const addUserInput = (food) => {
@@ -69,8 +75,10 @@ function App() {
 
   return (
     <div className="App">
+
       <FoodForm addUserInput={addUserInput}></FoodForm>
       <Filterbar 
+
       calories = {calories} caloriesChanged = {handleCaloriesInput} 
       allergies = {allergies} allergiesChanged = {handleAllergiesInput}
       diets = {diets} dietsChanged = {handleDietInput}
