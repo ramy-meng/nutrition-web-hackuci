@@ -17,6 +17,7 @@ app = Flask(__name__)
 
 @app.route("/search/", methods = ["GET"])
 def searchRequest():
+    print("WORKING")
     # q = request.args.get('q')
     q = "chicken"
     query['q'] = q
