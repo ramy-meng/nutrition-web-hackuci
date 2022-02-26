@@ -39,7 +39,11 @@ function App() {
   return (
     <div className="App">
       <FoodForm></FoodForm>
-      <Filterbar></Filterbar>
+      <Filterbar 
+      calories = {calories} caloriesChanged = {handleCaloriesInput} 
+      allergies = {allergies} allergiesChanged = {handleAllergiesInput}
+      diets = {diets} dietsChanged = {handleDietInput}
+      ></Filterbar>
     </div>
   );
 }
