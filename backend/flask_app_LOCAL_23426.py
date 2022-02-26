@@ -2,7 +2,6 @@ from flask import Flask
 from flask import request
 import requests
 import json
-from flask_cors import CORS
 
 url = 'https://api.edamam.com/api/recipes/v2' 
 appid = "13d3ef3c"
@@ -15,17 +14,16 @@ query = {
 
 
 app = Flask(__name__)
-CORS(app)
 
-@app.route("/search", methods = ["GET"])
+@app.route("/search/", methods = ["GET"])
 def searchRequest():
-    q = request.args.get('q')
-    health = request.args.get('health')
-    #q = "chicken"
+    print("WORKING")
+    # q = request.args.get('q')
+    q = "chicken"
     query['q'] = q
     query['app_id'] = appid
     query['app_key'] = appkey
-    query['health'] = health
+    query['health'] = ['vegan', 'vegetarian']
     response = requests.get(url, params = query)
     # relist = {i['recipe']['label'] : 1 for i in response.json()['hits']}
     # print(relist)
@@ -33,6 +31,10 @@ def searchRequest():
     return response.json()
 
 
+
+@app.route("/")
+def helloworld():
+    return "<p>Hello, World!</p>"
 
 
 
