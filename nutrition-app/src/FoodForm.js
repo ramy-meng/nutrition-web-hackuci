@@ -18,7 +18,7 @@ class FoodForm extends React.Component {
       alert('Entered Item: ' + this.state.value);
       event.preventDefault();
     }
-  
+    
     render() {
       return (
         <form onSubmit={this.handleSubmit}>
@@ -31,4 +31,5 @@ class FoodForm extends React.Component {
     }
   }
   
+  //This is the comment
   export default FoodForm
