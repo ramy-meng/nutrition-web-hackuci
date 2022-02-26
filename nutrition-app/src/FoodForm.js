@@ -30,6 +30,5 @@ class FoodForm extends React.Component {
       );
     }
   }
-  
-  //This is the comment
+
   export default FoodForm
