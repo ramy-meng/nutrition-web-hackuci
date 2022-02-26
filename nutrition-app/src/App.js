@@ -1,8 +1,10 @@
+// import ReactDOM from 'react-dom';
+// import { BrowserRouter } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+
 import './App.css';
 import FoodForm from './FoodForm'
 import Filterbar from './components/filterBar/filterBar'
-
 
 
 function App() {
