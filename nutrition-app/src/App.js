@@ -52,23 +52,33 @@ function App() {
   }
 
 
+  
 
   useEffect(() => {
-    //console.log(allergies)
-  fetch('http://127.0.0.1:5000/search/')
-  .then(response => {
-      console.log(response)
+    // when the submit button is pressed, make a fetch call
+  if (typeof(userInput) == 'string') {
+    var params = new URLSearchParams(userInput);
+    console.log("User Input:  " + userInput)
+    fetch('http://127.0.0.1:5000/search')
+      .then(response => {
+      console.log("Response:    " + response)
       response.json()
       .then(data => {
-        console.log(data)
+      console.log("Data:"  + data)
+        })
       })
-    })
-  }, [allergies]);
+
+  const [userInput, setUserInput] = useState([]);
+  const addUserInput = (food) => {
+      setUserInput(food)
+  }
 
   return (
     <div className="App">
-      <FoodForm></FoodForm>
-      <Filterbar
+
+      <FoodForm addUserInput={addUserInput}></FoodForm>
+      <Filterbar 
+
       calories = {calories} caloriesChanged = {handleCaloriesInput} 
       allergies = {allergies} allergiesChanged = {handleAllergiesInput}
       diets = {diets} dietsChanged = {handleDietInput}
