@@ -1,5 +1,5 @@
 // import ReactDOM from 'react-dom';
-// import { BrowserRouter } from 'react-router-dom';
+//import { BrowserRouter } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
 import './App.css';
@@ -50,7 +50,6 @@ function App() {
   const handleDietInput = (newDietInput) =>{
     setDiets(newDietInput);
   }
-
 
 
   useEffect(() => {
