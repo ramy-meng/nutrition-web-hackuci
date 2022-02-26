@@ -3,8 +3,6 @@ import './App.css';
 import FoodForm from './FoodForm'
 import Filterbar from './components/filterBar/filterBar'
 
-
-
 function App() {
 
   const [calories, setCalories] = useState(-1);
@@ -22,8 +20,6 @@ function App() {
   const handleDietInput = (newDietInput) =>{
     setDiets(newDietInput);
   }
-
-
 
   useEffect(() => {
   fetch('http://127.0.0.1:5000/search/')

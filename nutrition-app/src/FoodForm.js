@@ -23,7 +23,7 @@ class FoodForm extends React.Component {
       return (
         <form onSubmit={this.handleSubmit}>
           <label>
-            <input type="text" placeholder="food or recipe" value={this.state.value} onChange={this.handleChange} />
+            <input type="text" placeholder="Food or Recipe" value={this.state.value} onChange={this.handleChange} />
           </label>
           <input type="submit" value="Submit" />
         </form>
