@@ -17,12 +17,13 @@ app = Flask(__name__)
 
 @app.route("/search/", methods = ["GET"])
 def searchRequest():
-    # q = request.args.get('q')
-    q = "chicken"
+    q = request.args.get('q')
+    health = request.args.get('health')
+    #q = "chicken"
     query['q'] = q
     query['app_id'] = appid
     query['app_key'] = appkey
-    query['health'] = ['vegan', 'vegetarian']
+    query['health'] = health
     response = requests.get(url, params = query)
     # relist = {i['recipe']['label'] : 1 for i in response.json()['hits']}
     # print(relist)
@@ -30,10 +31,6 @@ def searchRequest():
     return response.json()
 
 
-
-@app.route("/")
-def helloworld():
-    return "<p>Hello, World!</p>"
 
 
 
