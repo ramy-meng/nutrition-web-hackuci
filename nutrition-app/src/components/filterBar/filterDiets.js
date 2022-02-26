@@ -14,7 +14,7 @@ function FilterDiets(props)
 
     for(const e of elements)
     {
-        items.push(<a type="button" key= {e} id = {e}>{e}</a>)
+        items.push(<a className = "dropdown-content-unclicked" type="button" key= {e} id = {e}>{e}</a>)
     }
 
     //window.addEventListener()

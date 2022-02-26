@@ -10,7 +10,7 @@ function Filterbar(props)
 
     return (
         <div className="filterBar">
-            < FilterAllergies allergiest = {props.allergies} allergiesChanged = {props.allergiesChanged}></FilterAllergies>
+            < FilterAllergies allergies = {props.allergies} allergiesChanged = {props.allergiesChanged}></FilterAllergies>
             <FilterDiets diets = {props.diets} dietsChanged = {props.dietsChanged}></FilterDiets>
             <CaloriesFilter caloriest = {props.calories} caloriesChanged = {props.caloriesChanged}></CaloriesFilter>
         </div>
