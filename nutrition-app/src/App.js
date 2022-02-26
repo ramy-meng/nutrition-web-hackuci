@@ -29,7 +29,11 @@ function App() {
         "Wheat Free" : false
 
     }); // set all the default to false here for the allergies
-  const [diets, setDiets] = useState({}); // set all the default to false here for the diets
+  const [diets, setDiets] = useState(
+    {
+      "vegan": false,
+      "vegetarian" :false
+    }); // set all the default to false here for the diets
 
   const handleCaloriesInput = (newCal) =>{
     console.log("old cal ", calories)
@@ -48,6 +52,7 @@ function App() {
 
 
   useEffect(() => {
+    //console.log(allergies)
   fetch('http://127.0.0.1:5000/search/')
   .then(response => {
       console.log(response)
@@ -56,12 +61,12 @@ function App() {
         console.log(data)
       })
     })
-  });
+  }, [allergies]);
 
   return (
     <div className="App">
       <FoodForm></FoodForm>
-      <Filterbar 
+      <Filterbar
       calories = {calories} caloriesChanged = {handleCaloriesInput} 
       allergies = {allergies} allergiesChanged = {handleAllergiesInput}
       diets = {diets} dietsChanged = {handleDietInput}
