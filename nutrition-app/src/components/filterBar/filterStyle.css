@@ -27,17 +27,32 @@
     z-index: 1;
   }
   
-  /* Links inside the dropdown */
+  /* Links inside the dropdown 
   .dropdown-content a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
 
+  }*/
+
+  .dropdown-content-unclicked{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-content-clicked{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    background-color:burlywood;
   }
   
   /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {background-color: #f1f1f1}
+  /* .dropdown-content a:hover {background-color: #f1f1f1} */
   
   
   /* Show the dropdown menu on hover */

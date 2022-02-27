@@ -1,8 +1,7 @@
-// import ReactDOM from 'react-dom';
-// import { BrowserRouter } from 'react-router-dom';
 import { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import { Routes ,Route } from 'react-router-dom';
+
 import React, { useState, useEffect } from 'react';
 
 import './App.css';
@@ -18,11 +17,37 @@ import AuthContext from './store/auth-context';
 function App() {
   const authCtx = useContext(AuthContext);
   const [calories, setCalories] = useState(-1);
-  const [allergies, setAllergies] = useState({}); // set all the default to false here for the allergies
-  const [diets, setDiets] = useState({}); // set all the default to false here for the diets
+  const [allergies, setAllergies] = useState(
+    {
+        "Alcohol Free" : false,
+        "Celery Free": false,
+        "Dairy Free":false,
+        "Egg Free" : false,
+        "Fish Free":false,
+        "FODMAP Free":false,
+        "Gluten Free":false,
+        "Lupine Free":false,
+        "Mollusk Free":false,
+        "Mustard Free":false,
+        "Peanut Free":false,
+        "Pork Free":false,
+        "Shellfish Free": false,
+        "Soy Free":false,
+        "Sulfite Free": false,
+        "Tree Nut Free":false,
+        "Wheat Free" : false
+
+    }); // set all the default to false here for the allergies
+  const [diets, setDiets] = useState(
+    {
+      "vegan": false,
+      "vegetarian" :false
+    }); // set all the default to false here for the diets
 
   const handleCaloriesInput = (newCal) =>{
+    console.log("old cal ", calories)
     setCalories(newCal);
+    console.log("new cal ", calories)
   }
 
   const handleAllergiesInput = (newAllergiesInput) =>{
@@ -34,8 +59,8 @@ function App() {
   }
 
 
-
   useEffect(() => {
+    //console.log(allergies)
   fetch('http://127.0.0.1:5000/search/')
   .then(response => {
       console.log(response)
@@ -44,7 +69,7 @@ function App() {
         console.log(data)
       })
     })
-  });
+  }, [allergies]);
 
   return (
     <Layout>
@@ -63,6 +88,7 @@ function App() {
         <Route path='/profile' element = { authCtx.isLoggedIn ? <UserProfile /> : <Navigate to='/auth' />}/>
       </Routes>
     </Layout>
+
   );
 
   // return (
