@@ -1,14 +1,21 @@
-// import ReactDOM from 'react-dom';
-//import { BrowserRouter } from 'react-router-dom';
+import { useContext } from 'react';
+import { Navigate } from 'react-router-dom';
+import { Routes ,Route } from 'react-router-dom';
+
 import React, { useState, useEffect } from 'react';
 
 import './App.css';
-import FoodForm from './FoodForm'
+// import FoodForm from './FoodForm'
 import Filterbar from './components/filterBar/filterBar'
+import Layout from './components/Layout/Layout';
+import UserProfile from './components/Profie/UserProfile';
+import AuthPage from './pages/AuthPage';
+import HomePage from './pages/HomePage';
+import AuthContext from './store/auth-context';
 
 
 function App() {
-
+  const authCtx = useContext(AuthContext);
   const [calories, setCalories] = useState(-1);
   const [allergies, setAllergies] = useState(
     {
@@ -65,15 +72,35 @@ function App() {
   }, [allergies]);
 
   return (
-    <div className="App">
-      <FoodForm></FoodForm>
-      <Filterbar
-      calories = {calories} caloriesChanged = {handleCaloriesInput} 
-      allergies = {allergies} allergiesChanged = {handleAllergiesInput}
-      diets = {diets} dietsChanged = {handleDietInput}
-      ></Filterbar>
-    </div>
+    <Layout>
+      <Routes>
+        <Route path='/' element = {
+          <div className="App">
+            <Filterbar 
+            calories = {calories} caloriesChanged = {handleCaloriesInput} 
+            allergies = {allergies} allergiesChanged = {handleAllergiesInput}
+            diets = {diets} dietsChanged = {handleDietInput}
+            ></Filterbar>
+          </div>
+        } />
+        {!authCtx.isLoggedIn && <Route path='/auth' element = {<AuthPage />}/>}
+
+        <Route path='/profile' element = { authCtx.isLoggedIn ? <UserProfile /> : <Navigate to='/auth' />}/>
+      </Routes>
+    </Layout>
+
   );
+
+  // return (
+    // <div className="App">
+    //   <FoodForm></FoodForm>
+    //   <Filterbar 
+    //   calories = {calories} caloriesChanged = {handleCaloriesInput} 
+    //   allergies = {allergies} allergiesChanged = {handleAllergiesInput}
+    //   diets = {diets} dietsChanged = {handleDietInput}
+    //   ></Filterbar>
+    // </div>
+  // );
 }
 
 export default App;
